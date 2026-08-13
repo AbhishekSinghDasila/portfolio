@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhishek Singh Dasila — Systems &amp; AI Engineer</title>
+<meta name="description" content="Portfolio of Abhishek Singh Dasila — Systems & AI Engineer. Multi-agent AI, real-time infrastructure, and data-driven systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0C0F14;
+    --bg-alt:#0F131A;
+    --panel:#141924;
+    --panel-2:#171D2A;
+    --border:#242C3B;
+    --border-soft:#1D2430;
+    --text:#E7EAF0;
+    --text-dim:#8B93A6;
+    --text-faint:#5A6274;
+    --amber:#E8A33D;
+    --teal:#6FD8C4;
+    --red:#E8654A;
+    --mono:'JetBrains Mono', monospace;
+    --sans:'Manrope', sans-serif;
+    --radius:6px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size:64px 64px;
+    background-position:center top;
+    background-attachment:fixed;
+  }
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  ::selection{background:var(--amber); color:#0C0F14;}
+
+  /* ---------- top nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(12,15,20,0.86);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto;}
+  .brand{font-family:var(--mono); font-weight:700; font-size:14px; letter-spacing:0.04em; display:flex; align-items:center; gap:8px;}
+  .brand .dot{width:8px; height:8px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal); animation:blink 2.4s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.35;}}
+  nav.links{display:flex; gap:26px; font-family:var(--mono); font-size:12.5px; color:var(--text-dim);}
+  nav.links a{transition:color .2s;}
+  nav.links a:hover{color:var(--amber);}
+  @media (max-width:640px){nav.links{display:none;}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:88px 0 56px;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; color:var(--teal);
+    letter-spacing:0.12em; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--teal);}
+  h1{
+    font-family:var(--sans); font-weight:800; font-size:clamp(38px,6vw,64px);
+    letter-spacing:-0.02em; line-height:1.05; margin-bottom:18px;
+  }
+  h1 span{color:var(--amber);}
+  .subhead{
+    font-size:clamp(16px,2vw,19px); color:var(--text-dim); max-width:620px; margin-bottom:32px;
+  }
+  .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:8px;}
+  .btn{
+    font-family:var(--mono); font-size:12.5px; padding:11px 18px; border-radius:var(--radius);
+    border:1px solid var(--border); color:var(--text); display:inline-flex; align-items:center; gap:8px;
+    transition:border-color .2s, transform .2s, background .2s;
+  }
+  .btn:hover{border-color:var(--amber); transform:translateY(-1px); background:var(--panel);}
+  .btn.primary{background:var(--amber); color:#0C0F14; border-color:var(--amber); font-weight:700;}
+  .btn.primary:hover{background:#f0ae4d;}
+  .loc-line{font-family:var(--mono); font-size:12px; color:var(--text-faint); margin-top:22px;}
+
+  /* ---------- telemetry strip ---------- */
+  .telemetry{
+    border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft);
+    background:var(--bg-alt);
+  }
+  .telemetry-grid{
+    display:grid; grid-template-columns:repeat(5,1fr);
+    max-width:1080px; margin:0 auto;
+  }
+  .telemetry-cell{
+    padding:26px 20px; border-right:1px solid var(--border-soft);
+    text-align:left;
+  }
+  .telemetry-cell:last-child{border-right:none;}
+  .telemetry-label{font-family:var(--mono); font-size:10.5px; color:var(--text-faint); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px;}
+  .telemetry-value{font-family:var(--mono); font-weight:700; font-size:26px; color:var(--teal);}
+  .telemetry-value.amber{color:var(--amber);}
+  @media (max-width:800px){
+    .telemetry-grid{grid-template-columns:repeat(2,1fr);}
+    .telemetry-cell{border-bottom:1px solid var(--border-soft);}
+  }
+
+  /* ---------- section shell ---------- */
+  section{padding:80px 0;}
+  .section-head{display:flex; align-items:baseline; gap:16px; margin-bottom:40px;}
+  .section-num{font-family:var(--mono); font-size:12px; color:var(--text-faint);}
+  .section-title{font-size:clamp(24px,3vw,30px); font-weight:800; letter-spacing:-0.01em;}
+  .section-line{flex:1; height:1px; background:var(--border-soft);}
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- about ---------- */
+  .about-text{max-width:700px; color:var(--text-dim); font-size:16px;}
+  .about-text strong{color:var(--text); font-weight:700;}
+
+  /* ---------- skills ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+  @media (max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  .skill-panel{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:20px;}
+  .skill-panel .head{font-family:var(--mono); font-size:11px; color:var(--amber); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:8px;}
+  .skill-panel .head::before{content:'▸';}
+  .tag-row{display:flex; flex-wrap:wrap; gap:7px;}
+  .tag{font-family:var(--mono); font-size:11.5px; padding:5px 9px; border:1px solid var(--border); border-radius:4px; color:var(--text-dim);}
+
+  /* ---------- experience ---------- */
+  .timeline{border-left:1px solid var(--border); padding-left:28px; display:flex; flex-direction:column; gap:36px;}
+  .tl-item{position:relative;}
+  .tl-item::before{content:''; position:absolute; left:-33px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--bg); border:2px solid var(--teal);}
+  .tl-date{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;}
+  .tl-role{font-size:18px; font-weight:700; margin-bottom:2px;}
+  .tl-org{font-family:var(--mono); font-size:12.5px; color:var(--teal); margin-bottom:12px;}
+  .tl-list{list-style:none; color:var(--text-dim); font-size:14.5px; display:flex; flex-direction:column; gap:6px;}
+  .tl-list li::before{content:'—  '; color:var(--text-faint);}
+  .tl-stack{margin-top:12px; font-family:var(--mono); font-size:11px; color:var(--text-faint);}
+
+  /* ---------- projects ---------- */
+  .project-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+  @media (max-width:800px){.project-grid{grid-template-columns:1fr;}}
+  .project-card{
+    background:var(--panel); border:1px solid var(--border); border-radius:var(--radius);
+    padding:24px; display:flex; flex-direction:column; gap:12px;
+    transition:border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .project-card:hover{border-color:var(--amber); transform:translateY(-3px); box-shadow:0 10px 30px -14px rgba(232,163,61,0.25);}
+  .project-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .project-title{font-size:17px; font-weight:700;}
+  .project-date{font-family:var(--mono); font-size:10.5px; color:var(--text-faint); white-space:nowrap;}
+  .project-role{font-family:var(--mono); font-size:11.5px; color:var(--teal); text-transform:uppercase; letter-spacing:0.05em;}
+  .project-desc{color:var(--text-dim); font-size:14px;}
+  .project-stack{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; padding-top:8px;}
+  .project-link{font-family:var(--mono); font-size:12px; color:var(--amber); display:inline-flex; align-items:center; gap:6px; margin-top:4px;}
+  .project-link:hover{text-decoration:underline;}
+
+  /* ---------- activity log ---------- */
+  .log-panel{
+    background:#0A0D12; border:1px solid var(--border); border-radius:var(--radius);
+    font-family:var(--mono); font-size:12.5px; overflow:hidden;
+  }
+  .log-header{
+    display:flex; align-items:center; gap:8px; padding:12px 16px;
+    border-bottom:1px solid var(--border-soft); color:var(--text-faint); font-size:11px;
+  }
+  .log-header .lights{display:flex; gap:6px;}
+  .log-header .lights span{width:9px; height:9px; border-radius:50%;}
+  .log-body{max-height:420px; overflow-y:auto;}
+  .log-line{
+    display:grid; grid-template-columns:100px 1fr 110px; gap:14px;
+    padding:10px 16px; border-bottom:1px solid var(--border-soft); align-items:center;
+  }
+  .log-line:last-child{border-bottom:none;}
+  .log-time{color:var(--text-faint); font-size:11px;}
+  .log-repo{color:var(--text);}
+  .log-repo a{color:var(--text); transition:color .2s;}
+  .log-repo a:hover{color:var(--amber);}
+  .log-repo .desc{display:block; color:var(--text-faint); font-size:11px; margin-top:2px;}
+  .log-lang{font-size:10.5px; text-align:right; color:var(--teal);}
+  .log-lang.py{color:var(--amber);}
+  .log-lang.ts, .log-lang.js{color:#7DA8E8;}
+  .cursor{display:inline-block; width:7px; height:14px; background:var(--teal); animation:blink 1s infinite; vertical-align:middle; margin-left:2px;}
+
+  /* ---------- achievements ---------- */
+  .ach-list{display:flex; flex-direction:column; gap:0;}
+  .ach-item{
+    display:flex; gap:16px; padding:16px 0; border-bottom:1px solid var(--border-soft);
+    align-items:baseline;
+  }
+  .ach-item:last-child{border-bottom:none;}
+  .ach-marker{font-family:var(--mono); color:var(--amber); font-size:12px; flex-shrink:0; width:24px;}
+  .ach-text{color:var(--text-dim); font-size:15px;}
+  .ach-text strong{color:var(--text);}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--border-soft); padding:56px 0 40px; background:var(--bg-alt);}
+  .footer-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px;}
+  .footer-title{font-size:22px; font-weight:800; margin-bottom:10px;}
+  .footer-sub{color:var(--text-dim); font-size:14px; max-width:380px; margin-bottom:18px;}
+  .footer-links{display:flex; flex-direction:column; gap:10px; font-family:var(--mono); font-size:13px;}
+  .footer-links a{color:var(--text-dim); transition:color .2s;}
+  .footer-links a:hover{color:var(--amber);}
+  .footer-bottom{margin-top:48px; padding-top:20px; border-top:1px solid var(--border-soft); font-family:var(--mono); font-size:11px; color:var(--text-faint); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  .todo-flag{
+    display:inline-block; font-family:var(--mono); font-size:9.5px; color:var(--red);
+    border:1px solid var(--red); padding:1px 5px; border-radius:3px; margin-left:6px; vertical-align:middle;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span> ASD // PORTFOLIO</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#log">Activity</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">Systems &amp; AI Engineer · Prayagraj / Haldwani, India</div>
+    <h1>Abhishek Singh<br><span>Dasila</span></h1>
+    <p class="subhead">I build the infrastructure and intelligence behind real-time systems — multi-agent AI pipelines, auto-scaling cloud platforms, and data systems that stay correct under load.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:abhisheksinghdasila7@gmail.com">Email Me</a>
+      <a class="btn" href="https://github.com/AbhishekSinghDasila" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://leetcode.com/u/AbhishekSinghDasila/" target="_blank" rel="noopener">LeetCode ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/abhishek-singh-dasila-781817223/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="tel:+919027504797">+91 90275 04797</a>
+    </div>
+    <div class="loc-line">// based in Haldwani, India · open to Chennai / Bangalore relocation</div>
+  </section>
+</main>
+
+<!-- TELEMETRY STRIP -->
+<div class="telemetry">
+  <div class="telemetry-grid">
+    <div class="telemetry-cell">
+      <div class="telemetry-label">M.Tech CGPA</div>
+      <div class="telemetry-value" data-count="8.29">0.00</div>
+    </div>
+    <div class="telemetry-cell">
+      <div class="telemetry-label">LeetCode Solved</div>
+      <div class="telemetry-value amber" data-count="800" data-suffix="+">0</div>
+    </div>
+    <div class="telemetry-cell">
+      <div class="telemetry-label">Public Repos</div>
+      <div class="telemetry-value" data-count="29">0</div>
+    </div>
+    <div class="telemetry-cell">
+      <div class="telemetry-label">Internships</div>
+      <div class="telemetry-value amber" data-count="2">0</div>
+    </div>
+    <div class="telemetry-cell">
+      <div class="telemetry-label">Hackathon</div>
+      <div class="telemetry-value" style="font-size:18px; color:var(--text);">2nd Place — IIIT-A</div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="about-text reveal">
+      I'm an M.Tech (Information Technology) graduate from <strong>IIIT Allahabad</strong> with a CGPA of 8.29, and a B.Tech in Information Technology from <strong>GBPUAT Pantnagar</strong>. My work sits at the intersection of two things: infrastructure that has to run reliably, and AI systems that have to reason over real data instead of guessing. I've built auto-scaling cloud platforms on KVM, multi-agent trading systems grounded in live market data, and facial/voice recognition pipelines for classroom attendance — always with an emphasis on correctness, observability, and end-to-end ownership. Before that, I worked as a Data Analyst across two internships, cleaning and visualizing operational data to drive real business decisions.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-head reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-panel">
+        <div class="head">Languages</div>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">C++</span><span class="tag">JavaScript</span><span class="tag">C</span>
+        </div>
+      </div>
+      <div class="skill-panel">
+        <div class="head">Frameworks &amp; Libraries</div>
+        <div class="tag-row">
+          <span class="tag">PyTorch</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">LangChain</span><span class="tag">LangGraph</span><span class="tag">Node.js</span>
+        </div>
+      </div>
+      <div class="skill-panel">
+        <div class="head">Databases</div>
+        <div class="tag-row">
+          <span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Supabase</span>
+        </div>
+      </div>
+      <div class="skill-panel">
+        <div class="head">Tools &amp; Platforms</div>
+        <div class="tag-row">
+          <span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Linux</span><span class="tag">Postman</span><span class="tag">Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-date">Aug 2024 — Oct 2024 · Hybrid, Noida</div>
+        <div class="tl-role">Data Analyst Intern</div>
+        <div class="tl-org">Aquad Software Solutions Pvt. Ltd.</div>
+        <ul class="tl-list">
+          <li>Collected, cleaned, and transformed structured datasets with Python (Pandas, NumPy) and SQL to improve data quality.</li>
+          <li>Ran exploratory data analysis to surface trends, missing values, and business insights.</li>
+          <li>Built interactive Power BI dashboards to track KPIs and business metrics.</li>
+          <li>Automated preprocessing scripts, cutting manual effort significantly.</li>
+        </ul>
+        <div class="tl-stack">SQL · Python · Pandas · NumPy · Power BI · Excel</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Jul 2023 — Aug 2023 · On-site, Sitarganj</div>
+        <div class="tl-role">Data Analyst Intern</div>
+        <div class="tl-org">Gujarat Ambuja Export Limited</div>
+        <ul class="tl-list">
+          <li>Analyzed operational and supply-chain data in Excel to improve inventory and logistics reporting.</li>
+          <li>Studied SAP ERP workflows across procurement, inventory, warehouse, and distribution.</li>
+          <li>Mapped end-to-end supply chain flow — from ~1,950–2,000 MT/day raw material intake to 1,500+ TPD finished-goods dispatch.</li>
+        </ul>
+        <div class="tl-stack">SAP ERP · Excel · Supply Chain Management</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Featured Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="project-grid reveal">
+
+      <div class="project-card">
+        <div class="project-top">
+          <div><div class="project-title">Multi-Agent Stock Intelligence</div><div class="project-role">AI Engineer</div></div>
+          <div class="project-date">Jul – Aug 2026</div>
+        </div>
+        <div class="project-desc">A 6-agent system combining live news sentiment, technical analysis, and ATR-based quantitative risk sizing to generate explainable trading signals — every number traced back to real computation, not LLM guesswork. Streams live multi-agent reasoning to a Next.js dashboard with a paper-trading simulator.</div>
+        <div class="project-stack">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Groq LLM API</span><span class="tag">React</span><span class="tag">Tailwind</span>
+        </div>
+        <a class="project-link" href="https://github.com/AbhishekSinghDasila/MARKETMIND" target="_blank" rel="noopener">github.com/AbhishekSinghDasila/MARKETMIND ↗</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div><div class="project-title">AI Attendance System</div><div class="project-role">ML &amp; AI Engineer</div></div>
+          <div class="project-date">Jun – Jul 2026</div>
+        </div>
+        <div class="project-desc">Smart classroom attendance system combining facial recognition (dlib) and speaker verification (Resemblyzer) for accuracy. QR-based enrollment with Face-ID authentication for secure student registration.</div>
+        <div class="project-stack">
+          <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Supabase</span><span class="tag">dlib</span><span class="tag">OpenCV</span>
+        </div>
+        <a class="project-link" href="https://github.com/AbhishekSinghDasila/ASD-CLASSROOM" target="_blank" rel="noopener">github.com/AbhishekSinghDasila/ASD-CLASSROOM ↗</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div><div class="project-title">Healthcare Management System</div><div class="project-role">Docker &amp; Microservices</div></div>
+          <div class="project-date">Mar – May 2026</div>
+        </div>
+        <div class="project-desc">A microservices-based healthcare platform built to SDLC principles, using Docker and Kubernetes. Modular services and APIs enable scalable inter-service communication and clean data flow.</div>
+        <div class="project-stack">
+          <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span>
+        </div>
+        <a class="project-link" href="https://github.com/AbhishekSinghDasila/Healthcare-Management-Application" target="_blank" rel="noopener">github.com/AbhishekSinghDasila/Healthcare-Management-Application ↗</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-top">
+          <div><div class="project-title">Private Cloud Auto-Scaling System</div><div class="project-role">Cloud Developer</div></div>
+          <div class="project-date">Feb – Mar 2026</div>
+        </div>
+        <div class="project-desc">An EC2-like IaaS auto-scaling platform on KVM/Libvirt. A Python monitoring engine polls CPU utilization every 5 seconds across active VMs and automatically scales down idle VMs (under 1–2% usage) to cut resource waste.</div>
+        <div class="project-stack">
+          <span class="tag">KVM</span><span class="tag">Libvirt</span><span class="tag">Python</span><span class="tag">Shell</span><span class="tag">Linux</span>
+        </div>
+        <a class="project-link" href="https://github.com/AbhishekSinghDasila/Private-Cloud-Auto-Scaling-System-EC2-Like-Using-KVM" target="_blank" rel="noopener">github.com/AbhishekSinghDasila/...KVM ↗</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACTIVITY LOG -->
+  <section id="log">
+    <div class="section-head reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Repository Activity</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="log-panel reveal">
+      <div class="log-header">
+        <div class="lights">
+          <span style="background:var(--red);"></span>
+          <span style="background:var(--amber);"></span>
+          <span style="background:var(--teal);"></span>
+        </div>
+        <span>~/AbhishekSinghDasila — git log --recent</span>
+      </div>
+      <div class="log-body" id="logBody">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="section-head reveal">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Achievements</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="ach-list reveal">
+      <div class="ach-item"><span class="ach-marker">→</span><span class="ach-text">Solved <strong>800+ problems</strong> on LeetCode and other platforms, focused on data structures and algorithms.</span></div>
+      <div class="ach-item"><span class="ach-marker">→</span><span class="ach-text">Secured <strong>2nd place</strong> in the M.Tech hackathon at IIIT Allahabad.</span></div>
+      <div class="ach-item"><span class="ach-marker">→</span><span class="ach-text">Maintains <strong>29+ public repositories</strong> spanning AI agents, cloud infrastructure, and applied ML.</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-title">Let's build something reliable.</div>
+        <p class="footer-sub">Open to Associate Data Scientist and SDE roles — especially where infrastructure meets real-world data at scale.</p>
+        <a class="btn primary" href="mailto:abhisheksinghdasila7@gmail.com">abhisheksinghdasila7@gmail.com</a>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/AbhishekSinghDasila" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://leetcode.com/u/AbhishekSinghDasila/" target="_blank" rel="noopener">LeetCode ↗</a>
+        <a href="https://www.linkedin.com/in/abhishek-singh-dasila-781817223/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="tel:+919027504797">+91 90275 04797</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Abhishek Singh Dasila</span>
+      <span>Static build · zero dependencies · deploy-ready for Vercel</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Repository activity data (from provided GitHub list)
+  const repos = [
+    {name:"Enterprise-RAG", time:"3 hours ago", desc:"A RAG based application", lang:"Python"},
+    {name:"MARKETMIND", time:"last week", desc:"Multi-agent AI stock research — News, Sector, Index, Technical, Risk & Decision agents", lang:"Python"},
+    {name:"AgentX-multi-agent-research-console", time:"2 weeks ago", desc:"Multi-agent research console", lang:"TypeScript"},
+    {name:"Tourist-traffic-management-system-for-hill-regions", time:"3 weeks ago", desc:"Traffic management system for hill regions", lang:"—"},
+    {name:"ASD-CLASSROOM", time:"last month", desc:"Smart AI attendance system", lang:"Python"},
+    {name:"Data-Analysis", time:"Jul 5", desc:"", lang:"Jupyter"},
+    {name:"RetailPulse", time:"Jun 27", desc:"Executive analytics dashboard", lang:"Python"},
+    {name:"Deep-Learning", time:"Jun 10", desc:"Foundational deep learning algorithms", lang:"Jupyter"},
+    {name:"Langchain", time:"Jun 5", desc:"Learning LangChain concepts", lang:"Python"},
+    {name:"Churn_Predictor-Using-ANN", time:"Jun 3", desc:"", lang:"Jupyter"},
+    {name:"Fincoach-ai", time:"May 7", desc:"", lang:"—"},
+    {name:"Big-Data", time:"May 7", desc:"Learning Hadoop and Spark", lang:"Shell"},
+    {name:"Healthcare-Management-Application", time:"May 5", desc:"Healthcare app with microservices via Docker/K8s", lang:"JavaScript"},
+    {name:"Machine-Learning", time:"Apr 17", desc:"Machine learning algorithms", lang:"Jupyter"},
+    {name:"Old_Car-Price-Predictor", time:"Apr 16", desc:"ML model for used car price prediction", lang:"Jupyter"},
+    {name:"Microservices-And-Docker", time:"Apr 10", desc:"", lang:"JavaScript"},
+    {name:"Train-Model-Using-Arduino-Nicla-Vision", time:"Apr 10", desc:"TinyML on Arduino Nicla Vision", lang:"Python"},
+    {name:"End-End-To-ML-Project", time:"Mar 30", desc:"", lang:"Python"},
+    {name:"Ensemble-Learning", time:"Mar 29", desc:"Voting, Bagging, Boosting", lang:"Jupyter"},
+    {name:"cricket-predictor", time:"Mar 8", desc:"Predict match win probability", lang:"Python"},
+    {name:"Private-Cloud-Auto-Scaling-System-EC2-Like-Using-KVM", time:"Feb 21", desc:"IaaS auto-scaling with KVM/Libvirt", lang:"Python"},
+    {name:"Numpy", time:"Jan 18", desc:"NumPy for data science", lang:"Jupyter"},
+    {name:"web-development-via-Emscripten", time:"Nov 18, 2025", desc:"Run C/C++ in the browser", lang:"JavaScript"},
+    {name:"react-c-fullstack-app", time:"Nov 18, 2025", desc:"C on client (Wasm) and server (Node.js)", lang:"—"},
+    {name:"ENCRYPTION", time:"Nov 15, 2025", desc:"RC4 encryption/decryption web app", lang:"—"},
+    {name:"currency-converter", time:"Nov 8, 2025", desc:"", lang:"CSS"},
+    {name:"cryptography", time:"Sep 23, 2025", desc:"", lang:"C++"},
+  ];
+
+  const langClass = (l) => {
+    if(l === "Python") return "py";
+    if(l === "TypeScript") return "ts";
+    if(l === "JavaScript") return "js";
+    return "";
+  };
+
+  const logBody = document.getElementById('logBody');
+  const baseUrl = "https://github.com/AbhishekSinghDasila/";
+  logBody.innerHTML = repos.map(r => `
+    <div class="log-line">
+      <span class="log-time">${r.time}</span>
+      <span class="log-repo">
+        <a href="${baseUrl}${r.name}" target="_blank" rel="noopener">${r.name}</a>
+        ${r.desc ? `<span class="desc">${r.desc}</span>` : ''}
+      </span>
+      <span class="log-lang ${langClass(r.lang)}">${r.lang}</span>
+    </div>
+  `).join('') + `<div class="log-line"><span class="log-time">now</span><span class="log-repo">watching for new commits<span class="cursor"></span></span><span class="log-lang"></span></div>`;
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  revealEls.forEach(el => io.observe(el));
+
+  // Count-up stats
+  const counters = document.querySelectorAll('[data-count]');
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.getAttribute('data-count'));
+      const suffix = el.getAttribute('data-suffix') || '';
+      const isDecimal = target % 1 !== 0;
+      const duration = 1100;
+      const start = performance.now();
+      function tick(now){
+        const p = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = target * eased;
+        el.textContent = (isDecimal ? val.toFixed(2) : Math.round(val)) + suffix;
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterObs.unobserve(el);
+    });
+  }, {threshold:0.4});
+  counters.forEach(el => counterObs.observe(el));
+</script>
+
+</body>
+</html>

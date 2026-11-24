@@ -198,6 +198,36 @@ h2.st{font:700 clamp(32px,4.4vw,52px)/1.05 var(--fd);letter-spacing:-.03em;text-
 .vs{margin-top:14px;font-size:13.5px;color:var(--faint)}
 @media (max-width:900px){.research{grid-template-columns:1fr}}
 
+.paper{border:1px solid var(--line);border-radius:20px;padding:clamp(22px,3.4vw,36px);background:radial-gradient(600px 300px at 100% 0%,rgba(255,90,54,.10),transparent 60%),var(--panel)}
+.paper-head h3{font:700 clamp(20px,2.2vw,26px)/1.25 var(--fd);letter-spacing:-.01em;margin:12px 0 12px;max-width:52ch;text-wrap:balance}
+.paper-head p{color:var(--dim);max-width:78ch}
+.paper-head p b{color:var(--ink);font-weight:600}
+.evo{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:24px 0 18px;counter-reset:x}
+.evo li{position:relative;border:1px solid var(--line);border-radius:14px;padding:16px 16px 16px 58px;background:var(--bg2)}
+.evo li:not(:last-child)::after{content:'→';position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--hot);font-weight:700;z-index:1;background:var(--panel);width:14px;text-align:center}
+.evo .step{position:absolute;left:16px;top:16px;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font:700 13px var(--fm);border:1px solid var(--line2);color:var(--dim)}
+.evo .step.hot{background:var(--hot);border-color:var(--hot);color:#0B0C0F}
+.evo b{display:block;font:700 16px var(--fd);margin-bottom:4px}
+.evo li>span:last-child{font-size:14px;color:var(--dim)}
+.scale{display:flex;flex-wrap:wrap;gap:8px}
+.scale span{font:500 12.5px var(--fm);padding:6px 11px;border-radius:999px;border:1px solid var(--line);color:var(--dim);background:var(--bg2)}
+.res-top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:16px}
+.res-top .tab{min-height:36px;font-size:13px;padding:0 12px}
+.rbars{display:grid;gap:7px}
+.rrow{display:grid;grid-template-columns:110px minmax(0,1fr) 46px;gap:10px;align-items:center;font-size:13.5px}
+.rrow span{color:var(--dim);white-space:nowrap}
+.rrow.me span{color:var(--ink);font-weight:600}
+.rrow em{font:500 12.5px var(--fm);font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.rtrack{height:14px;border-radius:5px;background:var(--bg);border:1px solid var(--line);overflow:hidden}
+.rtrack i{display:block;height:100%;width:0;background:var(--faint);border-radius:4px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.rrow.me .rtrack i{background:var(--hot)}
+.rnote{margin-top:14px;color:var(--ink);font-size:14.5px;min-height:3em}
+.rkpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:start}
+.rkpis .card{padding:20px}
+.rkpis b{display:block;font:700 clamp(28px,3vw,38px)/1.1 var(--fd);letter-spacing:-.03em;color:var(--hot);margin-bottom:6px;font-variant-numeric:tabular-nums}
+.rkpis span{font-size:14px;color:var(--dim)}
+@media (max-width:900px){.evo{grid-template-columns:1fr}.evo li:not(:last-child)::after{content:'↓';right:auto;left:22px;top:auto;bottom:-14px;transform:none}}
+@media (max-width:420px){.rkpis{grid-template-columns:1fr}.rrow{grid-template-columns:92px minmax(0,1fr) 42px}}
 /* skills */
 .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
 .sk h4{font:600 16px var(--fd);margin-bottom:14px;display:flex;justify-content:space-between}
@@ -407,7 +437,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
   <div class="wrap">
     <div class="stats rv">
       <div class="stat"><b data-count="8.29" data-dec="2">0</b><span>M.Tech CGPA</span></div>
-      <div class="stat"><b data-count="800" data-suf="+">0</b><span>DSA problems solved</span></div>
+      <a class="stat" href="https://codolio.com/profile/asd30" target="_blank" rel="noopener" title="Codolio profile"><b data-count="900" data-suf="+">0</b><span>DSA problems solved ↗</span></a>
       <div class="stat"><b data-count="99.98" data-dec="2" data-suf="%">0</b><span>Accuracy of the distilled IDS model</span></div>
       <div class="stat"><b data-count="40">0</b><span>Public repositories</span></div>
       <div class="stat"><b data-count="2" data-suf="×">0</b><span>GATE qualified (2024, 2025)</span></div>
@@ -419,7 +449,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
       <div class="about">
         <div class="rv">
           <p>I'm a final-year <b>M.Tech (Information Technology)</b> student at <b>IIIT Allahabad</b> (CGPA 8.29), after a B.Tech in IT from <b>GBPUAT Pantnagar</b>. My work sits where two things meet: systems that have to keep running, and AI that has to reason over real data instead of guessing.</p>
-          <p>I've built a <b>dynamic multi-agent ops assistant on MCP</b>, a deployed <b>agentic RAG stack</b> with RAGAS evaluation, a <b>6-agent stock-research system</b> where every number comes from real computation, a <b>5-service traffic platform</b> on Kafka, a <b>compiler-verification lab</b> for C++ and CUDA, <b>medallion data pipelines</b> with dbt, and an <b>auto-scaling private cloud</b> on KVM. For my thesis, I compress intrusion-detection models for medical IoT networks with knowledge distillation.</p>
+          <p>I've built a <b>dynamic multi-agent ops assistant on MCP</b>, a deployed <b>agentic RAG stack</b> with RAGAS evaluation, an <b>8-agent stock-research system</b> where every number comes from real computation, a <b>5-service traffic platform</b> on Kafka, a <b>compiler-verification lab</b> for C++ and CUDA, <b>medallion data pipelines</b> with dbt, and an <b>auto-scaling private cloud</b> on KVM. For my thesis, I compress intrusion-detection models for medical IoT with knowledge distillation, and I'm writing an IEEE paper on <b>PRISM-FL</b>, a calibrated federated aggregation rule for non-IID, unreliable IoT sites.</p>
           <p>Before that I worked as a data analyst in two internships, cleaning and visualising operational data that people used to make real decisions.</p>
         </div>
         <div class="rv">
@@ -440,10 +470,41 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
     <!-- RESEARCH -->
     <section class="band" id="research">
-      <div class="sh rv"><div><div class="kicker">Research</div><h2 class="st">Smaller intrusion detectors for medical IoT.</h2></div><p>My M.Tech thesis: deep-learning IDS models compact enough to run on the edge of IoMT networks, trained across hospitals without pooling their data.</p></div>
-      <div class="research">
+      <div class="sh rv"><div><div class="kicker">Research</div><h2 class="st">Which IoT sites should a federated IDS trust?</h2></div><p>My M.Tech research: intrusion detection trained across IoT and medical-IoT sites that can't share traffic, where some sites see rare attacks and some hold noisy or poisoned data.</p></div>
+
+      <div class="paper rv">
+        <div class="paper-head">
+          <span class="pill hot">IEEE paper draft · 2026</span>
+          <h3>From Heuristic to Calibrated Client Weighting: ARCS-FL, ARCS-FL v2 and PRISM-FL for Federated Intrusion Detection on Non-IID and Unreliable IoT Data</h3>
+          <p>The server's aggregation weights decide how much each site counts. Standard rules either ignore heterogeneity or treat all of it as low quality, so a hospital that is the only one seeing a rare attack gets drowned out. The paper separates <b>benign label skew</b>, which should be kept or amplified, from <b>harmful corruption</b>, which should be attenuated or bounded, through three successively stronger weighting rules.</p>
+        </div>
+        <ol class="evo">
+          <li><span class="step">1</span><b>ARCS-FL</b><span>Data size × reliability × diversity × consistency. Intuitive and cheap, but every factor mistakes legitimate label skew for low quality.</span></li>
+          <li><span class="step">2</span><b>ARCS-FL v2</b><span>Repairs each factor with something the server can verify: prototype-based reliability, shift-aware diversity, a median/MAD outlier test and norm-bounded updates.</span></li>
+          <li><span class="step hot">3</span><b>PRISM-FL</b><span>Replaces the heuristic with a strongly convex calibration program with proven guarantees. It reduces exactly to FedAvg when nothing is wrong.</span></li>
+        </ol>
+        <div class="scale"><span>3 datasets: IoTID20, CICIoMT2024, Edge-IIoTset</span><span>16 aggregation rules</span><span>4 heterogeneity levels</span><span>4 corruption families</span><span>≈4,800 federated runs</span></div>
+      </div>
+
+      <div class="research" style="margin-top:18px">
+        <div class="card rv">
+          <div class="res-top"><h3 style="margin:0">Macro-F1 by aggregation rule</h3>
+            <div class="tabs" id="resTabs" role="tablist"><button class="tab on" data-k="clean">Clean</button><button class="tab" data-k="corrupt">Under corruption</button><button class="tab" data-k="sign">Sign-flip poisoning</button></div></div>
+          <div class="rbars" id="rbars"></div>
+          <p class="rnote" id="rnote"></p>
+          <p class="vs">Mean over the three datasets. Proposed rules in orange; +M means with server momentum.</p>
+        </div>
+        <div class="rkpis rv">
+          <div class="card"><b>0.795</b><span>Best clean macro-F1 (PRISM-FL+M), +7.6 points over FedAvg</span></div>
+          <div class="card"><b>1.1%</b><span>Attacks missed by ARCS-FL v2 when sites relabel attacks as benign, versus 13.3% for FedAvg</span></div>
+          <div class="card"><b>0.468</b><span>Worst-class recall with PRISM-FL+M, versus 0.192 for FedAvg</span></div>
+          <div class="card"><b>0.92</b><span>Spearman correlation between estimated and true per-site label-noise rates</span></div>
+        </div>
+      </div>
+
+      <div class="research" style="margin-top:18px">
         <div class="card kd rv">
-          <span class="pill hot">Knowledge distillation · done</span>
+          <span class="pill">Knowledge distillation · done</span>
           <h3>A teacher model distilled into a student</h3>
           <svg id="kdsvg" viewBox="0 0 520 250" role="img" aria-label="Large teacher network distilled into a smaller student network"></svg>
           <div class="meter"><div class="lab"><span>Student accuracy on IoTID20</span><b>99.98%</b></div><div class="bar"><i style="--w:99.98%"></i></div></div>
@@ -451,16 +512,16 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <p style="margin-top:14px">A 69.4% size reduction with no meaningful loss in detection accuracy, so the model fits devices close to the sensors.</p>
         </div>
         <div class="card rv">
-          <span class="pill">Federated learning · in progress</span>
-          <h3>ARCS-FL: adaptive, risk-aware aggregation</h3>
-          <p>FedAvg weights each hospital's update only by how many samples it has. ARCS-FL re-weights updates by four signals, built for non-IID intrusion data across very different clients.</p>
+          <span class="pill">Also from the paper</span>
+          <h3>A data-leakage trap in a common IoTID20 pipeline</h3>
+          <p>A widely used IoTID20 preprocessing pipeline leaves <b style="color:var(--ink)">52.0% of test rows with an exact twin in the training set</b>, which inflates reported accuracy. The benchmark in this paper is leakage-audited, tunes every method on validation data only, and tests significance with Friedman/Nemenyi and Holm-corrected Wilcoxon tests.</p>
           <div class="factors">
-            <div><b>Data quantity</b><span>How much each client trained on</span></div>
-            <div><b>Detection quality</b><span>How well it catches attacks</span></div>
-            <div><b>Attack-class diversity</b><span>How many attack types it covers</span></div>
-            <div><b>Update consistency</b><span>How well it agrees with other clients</span></div>
+            <div><b>Benign label shift</b><span>Sites see different attack mixes, so keep or amplify their updates</span></div>
+            <div><b>Label corruption</b><span>Noisy or flipped labels, so attenuate those sites</span></div>
+            <div><b>Model poisoning</b><span>Gaussian or sign-flipped updates, so bound their influence</span></div>
+            <div><b>Class prototypes</b><span>Shared-model prototypes tell skew and corruption apart</span></div>
           </div>
-          <p class="vs">Evaluated on FNR, recall, F1 and MCC: the metrics that matter when a missed attack costs more than a false alarm.</p>
+          <p class="vs">The prototype-based noise detector separates noisy sites with AUROC 0.98. A comparable local-prototype method (GSWA) scores 0.20.</p>
         </div>
       </div>
     </section>
@@ -538,7 +599,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <section class="band" id="achievements">
       <div class="sh rv"><div><div class="kicker">Achievements</div><h2 class="st">A few things I'm proud of.</h2></div></div>
       <div class="ach rv">
-        <div class="card"><b>800<em>+</em></b><p>Data structures and algorithms problems solved on LeetCode and other platforms.</p></div>
+        <div class="card"><b>900<em>+</em></b><p>Data structures and algorithms problems solved across coding platforms. <a href="https://codolio.com/profile/asd30" target="_blank" rel="noopener" style="color:var(--hot)">See on Codolio →</a></p></div>
         <div class="card"><b>2<em>nd</em></b><p>Place in the M.Tech hackathon at IIIT Allahabad.</p></div>
         <div class="card"><b>GATE <em>×2</em></b><p>Qualified the Graduate Aptitude Test in Engineering in 2024 and 2025.</p></div>
         <div class="card"><b>NTSE</b><p>Cleared Round 1 of the National Talent Search Examination.</p></div>
@@ -555,7 +616,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
             <button data-copy-email><span>abhisheksinghdasila7@gmail.com</span><small>copy</small></button>
             <a href="tel:+919027504797"><span>+91 90275 04797</span><small>call</small></a>
             <a href="https://www.linkedin.com/in/abhishek-singh-dasila-781817223/" target="_blank" rel="noopener"><span>LinkedIn</span><small>/in/abhishek-singh-dasila</small></a>
-            <a href="https://leetcode.com/u/AbhishekSinghDasila/" target="_blank" rel="noopener"><span>LeetCode</span><small>/u/AbhishekSinghDasila</small></a>
+            <a href="https://codolio.com/profile/asd30" target="_blank" rel="noopener"><span>Codolio · 900+ DSA problems</span><small>/profile/asd30</small></a>
             <a href="https://github.com/AbhishekSinghDasila" target="_blank" rel="noopener"><span>GitHub</span><small>/AbhishekSinghDasila</small></a>
           </div>
         </div>
@@ -605,8 +666,8 @@ const projects=[
   pts:['Agentic multi-hop retrieval orchestrated with LangGraph','Hybrid dense/sparse embeddings on Qdrant','Answer quality measured with RAGAS instead of eyeballing','Fixed real deployment failures, including Render timeouts solved by pre-warming models at build time'],
   tags:['Python','LangGraph','FastAPI','Qdrant','Groq','React'],link:GH+'/Enterprise-RAG',demo:'https://enterprise-rag-six.vercel.app/'},
  {id:'marketmind',title:'MARKETMIND',role:'AI Engineer',date:'Jul – Aug 2026',cat:['ai'],
-  sum:'Multi-agent stock intelligence: six agents combine live news sentiment, technical analysis and ATR-based risk sizing into explainable signals, where every number traces back to real computation.',
-  pts:['News, Sector, Index, Technical, Risk and Decision agents','ATR-based quantitative position sizing, never LLM-guessed numbers','Streams live multi-agent reasoning to a dashboard','Built-in paper-trading simulator'],
+  sum:'Multi-agent stock intelligence for Indian markets (NSE/BSE): eight agents combine live news, sector momentum, technical analysis and ATR-based risk sizing into explainable signals, where every number traces back to real computation.',
+  pts:['A news agent tags articles by sector and sentiment; five sector agents (Banking, IT, FMCG, Oil & Gas, Pharma) combine price momentum with news','ATR-based quantitative position sizing, never LLM-guessed numbers','Streams live multi-agent reasoning to a dashboard','Built-in paper-trading simulator'],
   tags:['Python','FastAPI','Groq','React','Tailwind'],link:GH+'/MARKETMIND',demo:'https://marketmind-roan.vercel.app/'},
  {id:'compileguard',title:'CompileGuard',role:'Systems Engineer',date:'Oct 2026',cat:['systems'],
   sum:'An end-to-end compiler verification lab for C++, CUDA and PTX: it generates legal programs, compiles and runs them, checks results against specified semantics, and keeps every failure reproducible.',
@@ -632,10 +693,6 @@ const projects=[
   sum:'A live analytics dashboard for 20 Indian cities with weather-API integration, SQL analysis, interactive visualisations and automated incident tracking.',
   pts:['Live weather API feeds for 20 cities','SQL analysis on DuckDB','Interactive Plotly visualisations in Streamlit','Automated incident tracking'],
   tags:['Python','Streamlit','DuckDB','Plotly','SQL'],link:GH+'/bharatpluse'},
- {id:'retailiq',title:'RetailIQ',role:'Data Scientist',date:'Sep 2026',cat:['data','ml'],
-  sum:'Retail sales forecasting, SQL analytics and inventory planning in one app.',
-  pts:['Sales forecasting with scikit-learn','SQL analytics on DuckDB','Inventory planning driven by the forecasts','Streamlit interface'],
-  tags:['Python','scikit-learn','DuckDB','Streamlit'],link:GH+'/retailiq'},
  {id:'punct',title:'Punctuation Restoration',role:'NLP',date:'Nov 2026',cat:['ml'],
   sum:'Takes the unpunctuated, lower-case text a speech recogniser produces and restores its punctuation, focused on mental-health counselling transcripts.',
   pts:['Restores commas, periods and other marks in raw ASR-style text','Built for counselling conversations, where readability matters for review','Notebook-based experiments and evaluation'],
@@ -747,7 +804,7 @@ function tickClock(){try{clock.textContent=new Intl.DateTimeFormat('en-GB',{time
 tickClock();setInterval(tickClock,20000);
 
 /* ---------- typed ---------- */
-const roles=['building multi-agent systems that reason over real data','wiring LLM agents to real tools over MCP','shipping RAG that cites its sources','designing event-driven services that stay correct under load','compressing IDS models for medical IoT'];
+const roles=['building multi-agent systems that reason over real data','wiring LLM agents to real tools over MCP','shipping RAG that cites its sources','designing event-driven services that stay correct under load','compressing IDS models for medical IoT','calibrating federated learning across untrusted IoT sites'];
 const typedEl=$('#typed');
 if(!RM){
   let ri=0,ci=roles[0].length,del=true;
@@ -854,6 +911,26 @@ else{let vis=true;const gvo=new IntersectionObserver(es=>{vis=es[0].isIntersecti
  T.flat().forEach(([x,y])=>h+=`<circle class="n" cx="${x}" cy="${y}" r="7"/>`);S.flat().forEach(([x,y])=>h+=`<circle class="ns" cx="${x}" cy="${y}" r="7"/>`);
  h+=`<text x="110" y="236" text-anchor="middle">teacher</text><text x="415" y="236" text-anchor="middle">student · −69.4% size</text>`;s.innerHTML=h}
 
+/* ---------- research chart ---------- */
+const RES={
+ clean:{rows:[['FedAvg',.720],['FedAvgM',.760],['FedDisco',.739],['Multi-Krum',.711],['ARCS-FL',.703,1],['ARCS-FL v2',.745,1],['PRISM-FL',.765,1],['PRISM-FL+M',.795,1]],
+  note:'On clean but skewed data, PRISM-FL+M is best on all three datasets: 3.6 points above FedAvgM, the strongest baseline, and 7.6 points above FedAvg.'},
+ corrupt:{rows:[['FedAvg',.575],['FedAvgM',.570],['FedDisco',.591],['Multi-Krum',.747],['ARCS-FL',.556,1],['ARCS-FL v2',.748,1],['ARCS-FL v2+M',.779,1],['PRISM-FL+M',.750,1]],
+  note:'Averaged over label noise, label flipping, Gaussian and sign-flip poisoning, ARCS-FL v2+M scores highest. The original ARCS-FL falls to 0.556 because sign-flip attackers capture its consistency score.'},
+ sign:{rows:[['FedAvg',.169],['FedAvgM',.090],['Median',.710],['Multi-Krum',.750],['ARCS-FL',.046,1],['ARCS-FL v2',.738,1],['ARCS-FL v2+M',.768,1],['PRISM-FL+M',.597,1]],
+  note:'Sign-flip poisoning separates the rules sharply: FedAvg and ARCS-FL collapse, and ARCS-FL v2+M is the most robust. PRISM-FL is weaker here, which the paper analyses openly.'}
+};
+let resK='clean';
+function renderRes(anim){const d=RES[resK];
+  $('#rbars').innerHTML=d.rows.map(([n,v,me])=>`<div class="rrow${me?' me':''}"><span>${n}</span><div class="rtrack"><i data-w="${(v*100).toFixed(1)}"></i></div><em>${v.toFixed(3)}</em></div>`).join('');
+  $('#rnote').textContent=d.note;
+  const bars=$$('#rbars i');const go=()=>bars.forEach(b=>b.style.width=b.dataset.w+'%');
+  if(RM||!anim)go();else requestAnimationFrame(()=>requestAnimationFrame(go));}
+$('#resTabs').addEventListener('click',e=>{const b=e.target.closest('.tab');if(!b)return;resK=b.dataset.k;$$('#resTabs .tab').forEach(t=>t.classList.toggle('on',t===b));renderRes(true)});
+renderRes(false);
+const resObs=new IntersectionObserver(es=>{if(es[0].isIntersecting){$$('#rbars i').forEach(b=>b.style.width='0');renderRes(true);resObs.disconnect()}},{threshold:.3});
+resObs.observe($('#rbars'));
+
 /* ---------- skills ---------- */
 const count=sk=>projects.filter(p=>p.tags.includes(sk)).length;
 $('#skillGrid').innerHTML=skillGroups.map(([g,list])=>`<div class="card sk"><h4>${g}<small>${list.length}</small></h4><div class="chips">${list.map(sk=>{const c=count(sk);return c?`<button class="chip" data-skill="${esc(sk)}">${esc(sk)}<i>${c}</i></button>`:`<span class="chip">${esc(sk)}</span>`}).join('')}</div></div>`).join('');
@@ -925,10 +1002,10 @@ const CMD={
  skills:()=>skillGroups.map(([g,l])=>`<span class="h">${g}</span>\n  ${l.join(' · ')}`).join('\n'),
  projects:()=>projects.map((p,i)=>`  <span class="k">${String(i+1).padStart(2)}</span>  ${p.title.padEnd(30)}<span style="opacity:.6">${p.date}</span>`).join('\n')+'\n\nType <span class="k">open 1</span> to see details.',
  open:a=>{if(!a)return 'usage: open &lt;number|name&gt;';const n=parseInt(a,10);const p=n?projects[n-1]:projects.find(x=>x.title.toLowerCase().includes(a.toLowerCase())||x.id===a.toLowerCase());if(!p)return `no project matching "${esc(a)}"`;setTimeout(()=>openProject(p.id),150);return `opening ${p.title}…`},
- research:()=>'Knowledge distillation on IoTID20: the student model reaches <span class="k">99.98%</span> accuracy at <span class="k">69.4%</span> smaller size.\nARCS-FL: federated aggregation weighted by data quantity, detection quality, attack-class diversity and update consistency.',
+ research:()=>'<span class="h">IEEE paper draft</span> From Heuristic to Calibrated Client Weighting: ARCS-FL, ARCS-FL v2 and PRISM-FL for federated intrusion detection on non-IID, unreliable IoT data.\n  PRISM-FL+M: best clean macro-F1 <span class="k">0.795</span> (+7.6 pts over FedAvg)\n  ARCS-FL v2: <span class="k">+9.3 pts</span> under corruption, most robust to sign-flip poisoning\n  3 datasets · 16 rules · ≈4,800 federated runs\n<span class="h">Knowledge distillation</span> IoTID20 student: <span class="k">99.98%</span> accuracy at <span class="k">69.4%</span> smaller size.',
  experience:()=>'<span class="h">Aug–Oct 2024</span>  Data Analyst Intern · Aquad Software Solutions\n<span class="h">Jul–Aug 2023</span>  Data Analyst Intern · Gujarat Ambuja Exports',
  contact:()=>`email  ${EMAIL}\nphone  +91 90275 04797\nOr type <span class="k">email</span> to copy the address.`,
- socials:()=>`github    ${link(GH)}\nlinkedin  ${link('https://www.linkedin.com/in/abhishek-singh-dasila-781817223/','linkedin.com/in/abhishek-singh-dasila')}\nleetcode  ${link('https://leetcode.com/u/AbhishekSinghDasila/','leetcode.com/u/AbhishekSinghDasila')}`,
+ socials:()=>`github    ${link(GH)}\nlinkedin  ${link('https://www.linkedin.com/in/abhishek-singh-dasila-781817223/','linkedin.com/in/abhishek-singh-dasila')}\ncodolio   ${link('https://codolio.com/profile/asd30','codolio.com/profile/asd30')}`,
  email:()=>{copy(EMAIL,'Email copied: '+EMAIL);return 'copied to clipboard ✓'},
  goto:a=>{const ids=['about','research','skills','projects','experience','activity','achievements','contact'];const id=ids.find(i=>i.startsWith((a||'').toLowerCase()));if(!a||!id)return 'usage: goto &lt;'+ids.join('|')+'&gt;';setTimeout(()=>go('#'+id),150);return 'scrolling to '+id+'…'},
  ls:()=>'about  research  skills  projects  experience  activity  achievements  contact',
@@ -965,7 +1042,7 @@ const actions=[
  {l:'Copy email address',h:'action',f:()=>copy(EMAIL,'Email copied: '+EMAIL)},
  {l:'Open GitHub',h:'link',f:()=>openUrl(GH)},
  {l:'Open LinkedIn',h:'link',f:()=>openUrl('https://www.linkedin.com/in/abhishek-singh-dasila-781817223/')},
- {l:'Open LeetCode',h:'link',f:()=>openUrl('https://leetcode.com/u/AbhishekSinghDasila/')},
+ {l:'Open Codolio (coding profile)',h:'link',f:()=>openUrl('https://codolio.com/profile/asd30')},
  {l:'Use the terminal',h:'action',f:()=>{go('#terminal');setTimeout(()=>tin.focus({preventScroll:true}),500)}},
  {l:'Back to top',h:'action',f:()=>scrollTo({top:0,behavior:RM?'auto':'smooth'})}
 ];
